@@ -5,12 +5,14 @@ Console.WriteLine("\nTente acertar o número sorteado pelo jogo de 1 A 100");
 Console.WriteLine("Você terá 7 tentativas para acertar!\n");
 
 
-int palpite;
+int palpite = 0;
 int tentativa = 1;
 int sorteado;
 bool acertou = false;
 sorteado = RandomNumberGenerator.GetInt32(1, 101);
 
+while(palpite != sorteado)
+{
     Console.Write($"De seu palpite #{tentativa} ");
     palpite = Convert.ToInt32(Console.ReadLine());
 
@@ -39,9 +41,11 @@ sorteado = RandomNumberGenerator.GetInt32(1, 101);
             Console.WriteLine("Frio");
         }
     }
+
+  
+while(tentativa > 8 && !acertou)
+{
+    Console.Write($"\nO número que escolhi era {sorteado}");
     
-// while(tentativa <= 7 && !acertou)
-// {
-//     Console.Write("\nO número que escolhi era ");
-//     tentativa.ToString();
-// }
+}
+}
