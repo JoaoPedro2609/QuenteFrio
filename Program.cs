@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using System.Reflection.PortableExecutable;
+using System.Security.Cryptography;
+Console.Clear();
 
 Console.WriteLine("----QuenteFrio----");
 Console.WriteLine("\nTente acertar o número sorteado pelo jogo de 1 A 100");
@@ -19,27 +21,38 @@ while(palpite != sorteado)
     int erro = palpite - sorteado;
     int distanciaErro = Math.Abs(erro);
     acertou = (palpite == sorteado);
-
+    bool maiorOuMenor = Math.Sign(erro) == -1;
     if (!acertou)
     {
         tentativa++;
 
         if(distanciaErro <= 3)
         {
-            Console.WriteLine("Pelando");
+            Colorir("Pelando\n", ConsoleColor.Red);
         }
         else if(distanciaErro <= 10)
         {
-            Console.WriteLine("Quente");
+            Colorir("Quente\n", ConsoleColor.DarkRed);
         }
         else if(distanciaErro >= 30)
         {
-            Console.WriteLine("Congelando");
+            Colorir("Congelando\n", ConsoleColor.DarkBlue);
+            
+            Console.Write("tente um número mais ");
+            Colorir(maiorOuMenor ? "alto" : "baixo", maiorOuMenor ? ConsoleColor.DarkYellow : ConsoleColor.DarkMagenta);
+            Console.WriteLine(".");
         }
         else
         {
-            Console.WriteLine("Frio");
+            Colorir("Frio\n", ConsoleColor.Blue);
+            
+            Console.Write("tente um número mais ");
+            Colorir(maiorOuMenor ? "alto" : "baixo", maiorOuMenor ? ConsoleColor.DarkYellow : ConsoleColor.DarkMagenta);
+            Console.WriteLine(".");
         }
+            
+
+         
     }
 
   
@@ -48,4 +61,16 @@ if(tentativa == 8 && !acertou)
     Console.Write($"\nO número que escolhi era {sorteado}");
     return;
 }
+else if(acertou)
+{
+    Console.WriteLine("\nParabéns você acertou o numero sorteado!");
+    return;
+}
+}
+
+void Colorir(string texto, ConsoleColor cor)
+{
+    Console.ForegroundColor = cor;
+    Console.Write(texto);
+    Console.ResetColor();
 }
