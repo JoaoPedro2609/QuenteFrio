@@ -43,9 +43,9 @@ while(palpite != sorteado)
     }
 
   
-while(tentativa > 8 && !acertou)
+if(tentativa == 8 && !acertou)
 {
     Console.Write($"\nO número que escolhi era {sorteado}");
-    
+    return;
 }
 }
